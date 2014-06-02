@@ -145,6 +145,8 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 			// A new order is started
 			editableOrder = null;
 			updateMiddlePanelAsTransactionsList();
+			// The finalize window is cleaned..
+			finalizeDialog.updateRemainder(0);
 			
 			actualOrderPanel.revalidate();
 			
@@ -307,7 +309,7 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 			public void actionPerformed(ActionEvent e) {
 				// Rilancio a finestra di conferma.. poi settare editableOrder = null.
 				if(editableOrder != null) {
-					cleanDialog.initiailze("Cliccando su Ok l'intero ordine sarà cancellato! Desideri continuare?");
+					cleanDialog.initialize("Cliccando su Ok l'intero ordine sarà cancellato! Desideri continuare?");
 					cleanDialog.setOKButton();
 				}
 			}
@@ -320,7 +322,9 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 				// Rilancio a finestra di conferma.. poi richiamo evento per mandare evento al 
 				// controller e poi bisognerebbe bloccare gli input.
 				if(editableOrder != null ) {
-					finalizeDialog.initiailze("Vuoi davvero confermare questo ordine?");
+					//finalizeDialog = new FinalizeDialog(frame, SwingView.this);
+					finalizeDialog.initializeWithReminder("Vuoi davvero confermare questo ordine?");
+					finalizeDialog.updateRemainder(editableOrder.getTotalCost());
 					finalizeDialog.setOKButton();
 				}
 			}
@@ -337,7 +341,7 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 		btnSearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Rilancio a finestra di conferma.. poi richiamare finestra per inserimento ID.
-				searchWithIdDialog.initiailze("Inserendo un ID di un ordine, leggibile dallo scontrino stampato, è possibile recuperare modificare un'ordine già finalizzato.");
+				searchWithIdDialog.initialize("Inserendo un ID di un ordine, leggibile dallo scontrino stampato, è possibile recuperare modificare un'ordine già finalizzato.");
 				searchWithIdDialog.setOKButton();
 			}
 		});
@@ -347,7 +351,7 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 		btnExitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				exitDialog.initiailze("Vuoi davvero uscire?");
+				exitDialog.initialize("Vuoi davvero uscire?");
 				exitDialog.setOKButton();
 			}
 		});

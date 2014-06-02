@@ -6,6 +6,7 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -19,6 +20,7 @@ public abstract class ConfirmationDialog extends JDialog {
 	private static final long serialVersionUID = -5733407555808104120L;
 	
 	protected final JPanel contentPanel = new JPanel();
+	protected final JPanel envCentralPanel = new JPanel();;
 	protected ReturnSwingView returnSwingView;
 	protected boolean acceptInputText;
 
@@ -34,26 +36,33 @@ public abstract class ConfirmationDialog extends JDialog {
 		this.returnSwingView = returnSwingView;
 		this.acceptInputText = acceptInputText;
 		
-//		initiailze("Abstract text");
 	}
 	
-	public void initiailze(String textToBevisualized) {
+	public void centerResize(int width, int height) {
+		setBounds(0, 0, width, height);
+		setLocationRelativeTo(null);
+	}
+	
+	public void initialize(String textToBevisualized) {
 		
-		setBounds(0, 0, 300, 150);
+		setBounds(0, 0, 300, 210);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setAlwaysOnTop(true);
 		
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		envCentralPanel.setLayout(new BoxLayout(envCentralPanel, BoxLayout.Y_AXIS));
+		envCentralPanel.add(contentPanel);
+		getContentPane().add(envCentralPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JTextArea displayedText = new JTextArea();
 			displayedText.setWrapStyleWord(true);
 			displayedText.setText(textToBevisualized);
-			displayedText.setRows(5);
+			displayedText.setRows(3);
 			displayedText.setLineWrap(true);
+			//JTextField displayedText = new JTextField(textToBevisualized);
 			displayedText.setEditable(false);
 			contentPanel.add(displayedText, BorderLayout.CENTER);
 		}
