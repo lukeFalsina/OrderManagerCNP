@@ -41,7 +41,7 @@ public class OrderRevisionDialog extends JDialog {
 		try {
 			
 			Order temporarayOrder = new Order(new Transaction(new Food("Pasta al pesto", 5f, "", 0), 4));
-			temporarayOrder.addFurtherTransaction(new TransactionWithSupplement(new Food("Pasta al ragù", 5f, "", 0), 2, new Supplement("Più Sugo", 1.0f, 0)));
+			temporarayOrder.addFurtherTransaction(new TransactionWithSupplement(new Food("Pasta al ragï¿½", 5f, "", 0), 2, new Supplement("Piï¿½ Sugo", 1.0f, 0)));
 			temporarayOrder.addFurtherTransaction(new TransactionWithSupplement(new Food("Pasta al pesto", 5f, "", 0), 2, new Supplement("Senza Formaggio", 0f, 0)));
 			temporarayOrder.addFurtherTransaction(new Transaction(new Food("Costine", 3f, "", 0), 3));
 			temporarayOrder.addFurtherTransaction(new Transaction(new Drink("Acqua", 2f, "", 0), 2));
@@ -140,12 +140,12 @@ public class OrderRevisionDialog extends JDialog {
 						
 						if (currTransWithSupp.getSupplement().getExtraCharge() == 0f) {
 							// Supplement has not an additional cost.
-							lblNewLabelQuaCost = new JLabel(currTransWithSupp.getQuantity() + " X " + currTransWithSupp.getInvolvedElement().getCost() + " €  ");
+							lblNewLabelQuaCost = new JLabel(currTransWithSupp.getQuantity() + " X " + currTransWithSupp.getInvolvedElement().getCost() + " â‚¬  ");
 						}
 						else {
 							// Supplement has an additional cost.
 							lblNewLabelQuaCost = new JLabel(currTransWithSupp.getQuantity() + " X (" + 
-							currTransWithSupp.getInvolvedElement().getCost() + " + " +currTransWithSupp.getSupplement().getExtraCharge() + ") €  ");
+							currTransWithSupp.getInvolvedElement().getCost() + " + " +currTransWithSupp.getSupplement().getExtraCharge() + ") â‚¬  ");
 						}
 						
 						lblNewLabelQuaCost.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -159,7 +159,7 @@ public class OrderRevisionDialog extends JDialog {
 						lblNewLabelName.setHorizontalAlignment(SwingConstants.LEADING);
 						transaction_panel.add(lblNewLabelName);
 						
-						JLabel lblNewLabelQuaCost = new JLabel(currentTransaction.getQuantity() + " X " + currentTransaction.getInvolvedElement().getCost() + " €  ");
+						JLabel lblNewLabelQuaCost = new JLabel(currentTransaction.getQuantity() + " X " + currentTransaction.getInvolvedElement().getCost() + " â‚¬  ");
 						lblNewLabelQuaCost.setHorizontalAlignment(SwingConstants.TRAILING);
 						transaction_panel.add(lblNewLabelQuaCost);
 					}
@@ -169,7 +169,7 @@ public class OrderRevisionDialog extends JDialog {
 			}
 		}
 		{
-			JLabel lblOrderCostLabel = new JLabel("Costo Totale: " + incomingOrder.getAssociatedOrder().getTotalCost() + " €  ");
+			JLabel lblOrderCostLabel = new JLabel("Costo Totale: " + incomingOrder.getAssociatedOrder().getTotalCost() + " â‚¬  ");
 			lblOrderCostLabel.setFont(new Font("Dialog", Font.BOLD, 17));
 			lblOrderCostLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 			contentPanel.add(lblOrderCostLabel, BorderLayout.SOUTH);

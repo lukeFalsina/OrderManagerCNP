@@ -157,7 +157,7 @@ public class ChooseSupplementDialog extends JDialog {
 			contentPanel.add(panel, BorderLayout.SOUTH);
 			panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			{
-				JLabel lblTextExplanationLabel = new JLabel("Inserire la quantit‡ per l'elemento con variazione:");
+				JLabel lblTextExplanationLabel = new JLabel("Inserire la quantit√† per l'elemento con variazione:");
 				lblTextExplanationLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 				lblTextExplanationLabel.setFont(new Font("Dialog", Font.ITALIC, 11));
 				panel.add(lblTextExplanationLabel);
@@ -184,7 +184,7 @@ public class ChooseSupplementDialog extends JDialog {
 				Supplement currSupplement = possibleSupplementList.get(buttonIndex);
 				
 				//Create the radio button
-				JRadioButton newButton = new JRadioButton(currSupplement.getName() + " ( +" + currSupplement.getExtraCharge() + " Ä )");
+				JRadioButton newButton = new JRadioButton(currSupplement.getName() + " ( +" + currSupplement.getExtraCharge() + " ‚Ç¨ )");
 			    newButton.setActionCommand(String.valueOf(buttonIndex));
 			    
 			    //The first button is selected as the default one.

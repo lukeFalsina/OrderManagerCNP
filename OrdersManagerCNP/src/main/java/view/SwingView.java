@@ -159,14 +159,14 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 	public void receivePreviouslyStoredOrder(
 			ReceivedOrderEvent receiveOrderEvent) {
 		if(receiveOrderEvent.isResearchSuccessfull()) {
-			// an order was found so the popup for revision is opened..
+			// an order was found so the pop up for revision is opened..
 			@SuppressWarnings("unused")
 			OrderRevisionDialog orderRevision = new OrderRevisionDialog(frame, receiveOrderEvent.getFoundCommittedOrder(), this);
 		}
 		else {
 			// no order was found..
 			@SuppressWarnings("unused")
-			MessageStateDialog message = new MessageStateDialog(frame, true, "Non Ë stato trovato nessun ordine con l'ID scelto!");
+			MessageStateDialog message = new MessageStateDialog(frame, true, "Non √® stato trovato nessun ordine con l'ID scelto!");
 		}
 		
 	}
@@ -176,7 +176,7 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 		editableOrder = orderToBeModified.getAssociatedOrder();
 		
 		@SuppressWarnings("unused")
-		MessageStateDialog message = new MessageStateDialog(frame, false, "L'ordine Ë stato importato con successo!");
+		MessageStateDialog message = new MessageStateDialog(frame, false, "L'ordine √® stato importato con successo!");
 		
 		updateMiddlePanelAsTransactionsList();
 		actualOrderPanel.revalidate();
@@ -257,7 +257,7 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 		JPanel titlePanel = new JPanel();
 		contentPane.add(titlePanel, BorderLayout.NORTH);
 		
-		JLabel lblTitleLabel = new JLabel("Gestore prenotazione ordini CodeghÏ 'N del P‡ - Giugno 2013");
+		JLabel lblTitleLabel = new JLabel("Gestore prenotazione ordini Codegh√¨ 'N del P√† - Giugno 2014");
 		titlePanel.add(lblTitleLabel);
 		lblTitleLabel.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -307,7 +307,7 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 			public void actionPerformed(ActionEvent e) {
 				// Rilancio a finestra di conferma.. poi settare editableOrder = null.
 				if(editableOrder != null) {
-					cleanDialog.initiailze("Cliccando su Ok l'intero ordine sar‡† cancellato! Desideri continuare?");
+					cleanDialog.initiailze("Cliccando su Ok l'intero ordine sar√† cancellato! Desideri continuare?");
 					cleanDialog.setOKButton();
 				}
 			}
@@ -337,7 +337,7 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 		btnSearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Rilancio a finestra di conferma.. poi richiamare finestra per inserimento ID.
-				searchWithIdDialog.initiailze("Inserendo un ID di un ordine, leggibile dallo scontrino stampato, Ë possibile recuperare modificare un'ordine gi‡† finalizzato.");
+				searchWithIdDialog.initiailze("Inserendo un ID di un ordine, leggibile dallo scontrino stampato, √® possibile recuperare modificare un'ordine gi√† finalizzato.");
 				searchWithIdDialog.setOKButton();
 			}
 		});
@@ -513,12 +513,12 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 					
 					if (currTransWithSupp.getSupplement().getExtraCharge() == 0f) {
 						// Supplement has not an additional cost.
-						lblQuaCostLabel = new JLabel(currTransWithSupp.getQuantity() + " X " + currTransWithSupp.getInvolvedElement().getCost() + " Ä  ");
+						lblQuaCostLabel = new JLabel(currTransWithSupp.getQuantity() + " X " + currTransWithSupp.getInvolvedElement().getCost() + " ‚Ç¨  ");
 					}
 					else {
 						// Supplement has an additional cost.
 						lblQuaCostLabel = new JLabel(currTransWithSupp.getQuantity() + " X (" + 
-						currTransWithSupp.getInvolvedElement().getCost() + " + " +currTransWithSupp.getSupplement().getExtraCharge() + ") Ä  ");
+						currTransWithSupp.getInvolvedElement().getCost() + " + " +currTransWithSupp.getSupplement().getExtraCharge() + ") ‚Ç¨  ");
 					}
 					
 					lblQuaCostLabel.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -532,7 +532,7 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 					lblNameTransLabel.setHorizontalAlignment(SwingConstants.LEADING);
 					transactionPanel.add(lblNameTransLabel);
 					
-					JLabel lblQuaCostLabel = new JLabel(currentTransaction.getQuantity() + " X " + currentTransaction.getInvolvedElement().getCost() + " Ä  ");
+					JLabel lblQuaCostLabel = new JLabel(currentTransaction.getQuantity() + " X " + currentTransaction.getInvolvedElement().getCost() + " ‚Ç¨  ");
 					lblQuaCostLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 					transactionPanel.add(lblQuaCostLabel);
 				}
@@ -550,7 +550,7 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 			totalPanel.setLayout(new BorderLayout(0, 15));
 			middlePanel.add(totalPanel);
 			
-			JLabel lblTotalOrderLabel = new JLabel("Totale: " + editableOrder.getTotalCost() + " Ä  ");
+			JLabel lblTotalOrderLabel = new JLabel("Totale: " + editableOrder.getTotalCost() + " ‚Ç¨  ");
 			lblTotalOrderLabel.setFont(new Font("Dialog", Font.BOLD, 18));
 			lblTotalOrderLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 			totalPanel.add(lblTotalOrderLabel, BorderLayout.NORTH);

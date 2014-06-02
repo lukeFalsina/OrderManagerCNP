@@ -108,7 +108,7 @@ public class Main {
 		lblNewLabel_3.setVerticalAlignment(SwingConstants.TOP);
 		panel_2.add(lblNewLabel_3);
 				
-		JLabel lblNewLabel = new JLabel("Scelta della modalit‡ d'uso:");
+		JLabel lblNewLabel = new JLabel("Scelta della modalit√† d'uso:");
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -185,8 +185,11 @@ public class Main {
 		JLabel lblNomeDBLabel = new JLabel("Nome computer che ospita il Data Base: ");
 		urlDBPanel.add(lblNomeDBLabel);
 		
+		// This is the default IP address which hosts both the DB and the printer
+		String standardIPAddress = "127.0.0.1";
+		
 		txtNomeDB = new JTextField();
-		txtNomeDB.setText("192.168.1.123");
+		txtNomeDB.setText(standardIPAddress);
 		urlDBPanel.add(txtNomeDB);
 		txtNomeDB.setColumns(25);
 		
@@ -198,7 +201,7 @@ public class Main {
 		urlPrinterPanel.add(lblNomePrinterLabel);
 		
 		txtNomePrinter = new JTextField();
-		txtNomePrinter.setText("\\\\192.168.1.123\\EPSONL90");
+		txtNomePrinter.setText("\\\\" + standardIPAddress + "\\EPSONL90");
 		urlPrinterPanel.add(txtNomePrinter);
 		txtNomePrinter.setColumns(25);
 		
