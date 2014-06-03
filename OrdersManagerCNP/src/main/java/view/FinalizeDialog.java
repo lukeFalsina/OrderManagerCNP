@@ -21,7 +21,7 @@ public class FinalizeDialog extends ConfirmationDialog {
 	protected final JPanel reminderPanel = new JPanel();
 	protected JCheckBox reminderCheckBox;
 	protected JTextField customerMoneyText;
-	private JLabel totalAmountLabel, customerMoneyLabel;
+	private JLabel customerMoneyLabel; //, totalAmountLabel;
 	protected JLabel reminderLabel;
 	protected Float totalCost;
 	protected JButton reminderButton;
@@ -81,11 +81,11 @@ public class FinalizeDialog extends ConfirmationDialog {
 			customerMoneyPanel.add(customerMoneyText);
 			reminderPanel.add(customerMoneyPanel);
 		
-			JPanel totalAmountPanel = new JPanel();
-			totalAmountPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			totalAmountLabel = new JLabel("Totale dovuto: "); //+ String.valueOf(totalCost));
-			totalAmountPanel.add(totalAmountLabel);
-			reminderPanel.add(totalAmountPanel);
+			//JPanel totalAmountPanel = new JPanel();
+			//totalAmountPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			//totalAmountLabel = new JLabel("Totale dovuto: "); //+ String.valueOf(totalCost));
+			//totalAmountPanel.add(totalAmountLabel);
+			//reminderPanel.add(totalAmountPanel);
 		
 			JPanel dashLinePanel = new JPanel();
 			dashLinePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -126,7 +126,7 @@ public class FinalizeDialog extends ConfirmationDialog {
 			}           
 		});
 		
-		totalAmountLabel.setText("Totale dovuto: " + String.valueOf(this.totalCost));
+		//totalAmountLabel.setText("Totale dovuto: " + String.valueOf(this.totalCost));
 		customerMoneyText.setText("0.0");
 		reminderLabel.setText("Resto: -------");
 		
@@ -170,4 +170,10 @@ public class FinalizeDialog extends ConfirmationDialog {
 		
 	}
 
+	/**
+	 * @param totalCost the totalCost to set
+	 */
+	public void setTotalCost(Float totalCost) {
+		this.totalCost = totalCost;
+	}
 }

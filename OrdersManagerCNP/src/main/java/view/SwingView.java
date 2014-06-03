@@ -369,9 +369,10 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 			
 			JPanel singleEntryPanel = new JPanel();
 			singleEntryPanel.setBackground(Color.ORANGE);
-			FlowLayout fl_singleEntryPanel = (FlowLayout) singleEntryPanel.getLayout();
-			fl_singleEntryPanel.setVgap(0);
-			fl_singleEntryPanel.setHgap(0);
+			//FlowLayout fl_singleEntryPanel = (FlowLayout) singleEntryPanel.getLayout();
+			//fl_singleEntryPanel.setVgap(0);
+			//fl_singleEntryPanel.setHgap(0);
+			singleEntryPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 3, 0));
 			singleEntryPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 			elementListPanel.add(singleEntryPanel);
 		
@@ -403,6 +404,9 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 					updateMiddlePanelAsTransactionsList();
 					
 					actualOrderPanel.revalidate();
+					
+					// Update the order total cost for reminder computation..
+					finalizeDialog.setTotalCost(editableOrder.getTotalCost());
 					
 				}
 			});

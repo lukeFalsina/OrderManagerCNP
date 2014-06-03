@@ -109,7 +109,7 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 					// Transactions with Supplement
 					// Recast of the transaction..
 					TransactionWithSupplement tSupp = (TransactionWithSupplement) t;
-					//Se la variazione non è presente nel DB la aggiungo
+					//Se la variazione non ï¿½ presente nel DB la aggiungo
 					if (tSupp.getSupplement().getID()==0){
 						
 						//Genero un record con un marker e lo inserisco
@@ -143,7 +143,7 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 						pst.setInt(1, id_ordine);
 						pst.executeUpdate();
 					}else 
-						//Se è presente estraggo l'ID
+						//Se ï¿½ presente estraggo l'ID
 						id_variazione=(int)tSupp.getSupplement().getID();
 					
 				}
@@ -350,7 +350,8 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 		try {
 			startTransaction();
 			
-			pst = con.prepareStatement("SELECT \"Nome\",\"Costo\",\"Descrizione\",\"ID_pietanza\" FROM public.\"Pietanza\" WHERE \"tipo_ID\" = ?;");
+			//pst = con.prepareStatement("SELECT \"Nome\",\"Costo\",\"Descrizione\",\"ID_pietanza\" FROM public.\"Pietanza\" WHERE \"tipo_ID\" = ?;");
+			pst = con.prepareStatement("SELECT \"Nome\",\"Costo\",\"Descrizione\",\"ID_pietanza\" FROM public.\"Pietanza\" WHERE \"tipo_ID\" = ? AND \"active\"='t';");
 			if (elementChoice=="FOOD"){
 				pst.setInt(1, 1);
 				rs = pst.executeQuery();
