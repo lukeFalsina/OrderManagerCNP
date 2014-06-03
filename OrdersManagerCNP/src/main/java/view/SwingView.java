@@ -373,7 +373,7 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 			//fl_singleEntryPanel.setVgap(0);
 			//fl_singleEntryPanel.setHgap(0);
 			singleEntryPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 3, 0));
-			singleEntryPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+			singleEntryPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 			elementListPanel.add(singleEntryPanel);
 		
 			JSplitPane oneButtonSplitPanel = new JSplitPane();
@@ -434,13 +434,13 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 				elementButtonPanel.add(btnSpecialButton);
 			}
 		
-			JPanel elementDetailspanel = new JPanel();
-			elementDetailspanel.setBackground(Color.ORANGE);
-			oneButtonSplitPanel.setLeftComponent(elementDetailspanel);
-			elementDetailspanel.setLayout(new BoxLayout(elementDetailspanel, BoxLayout.Y_AXIS));
+			JPanel elementDetailsPanel = new JPanel();
+			elementDetailsPanel.setBackground(Color.ORANGE);
+			oneButtonSplitPanel.setLeftComponent(elementDetailsPanel);
+			elementDetailsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 			JLabel lblElementNameLabel = new JLabel(elementList.get(elementIndex).getName());
-			elementDetailspanel.add(lblElementNameLabel);
+			elementDetailsPanel.add(lblElementNameLabel);
 		
 //			JLabel lblElementDescrLabel = new JLabel(elementList.get(elementIndex).getDescription());
 //			elementDetailspanel.add(lblElementDescrLabel);
@@ -465,13 +465,15 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 			middlePanel.add(orderTrackPanel);
 			orderTrackPanel.setLayout(new GridLayout(editableOrder.getTransactions().size(), 1, 0, 0));
 			
+			//removeButtons = new ArrayList<JButton>();
+			
 			// I will create a number of line which is equal to the number of transitions 
 			// inside the current order..
 			for(int buttonIndex = 0; buttonIndex < editableOrder.getTransactions().size(); buttonIndex++) {
 				
 				JPanel linePanel = new JPanel();
 				orderTrackPanel.add(linePanel);
-				linePanel.setLayout(new BorderLayout(0, 0));
+				linePanel.setLayout(new BorderLayout(10, 0));
 			
 				JPanel buttonLinePanel = new JPanel();
 				linePanel.add(buttonLinePanel, BorderLayout.WEST);
@@ -494,12 +496,17 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 						
 						actualOrderPanel.revalidate();
 						
+						//@SuppressWarnings("unused")
+						//JButton btnToBeRemoved = removeButtons.remove(correctElementIndex);
+						//btnToBeRemoved = null;
+						
 //						for(JButton removeButton : removeButtons) {
 //							removeButton.revalidate();
 //						}
+						
 					}
 				});
-//				removeButtons.add(btnRemoveLineButton);
+				//removeButtons.add(btnRemoveLineButton);
 				buttonLinePanel.add(btnRemoveLineButton);
 		
 				JPanel transactionPanel = new JPanel();

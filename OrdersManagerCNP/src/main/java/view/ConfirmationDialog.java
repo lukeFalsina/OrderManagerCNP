@@ -45,7 +45,7 @@ public abstract class ConfirmationDialog extends JDialog {
 	
 	public void initialize(String textToBevisualized) {
 		
-		setBounds(0, 0, 300, 210);
+		setBounds(0, 0, 300, 190);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setAlwaysOnTop(true);
