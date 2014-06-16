@@ -310,7 +310,6 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 				// Rilancio a finestra di conferma.. poi settare editableOrder = null.
 				if(editableOrder != null) {
 					cleanDialog.initialize("Cliccando su Ok l'intero ordine sarà cancellato! Desideri continuare?");
-					cleanDialog.setOKButton();
 				}
 			}
 		});
@@ -325,7 +324,6 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 					//finalizeDialog = new FinalizeDialog(frame, SwingView.this);
 					finalizeDialog.initializeWithReminder("Vuoi davvero confermare questo ordine?");
 					finalizeDialog.updateRemainder(editableOrder.getTotalCost());
-					finalizeDialog.setOKButton();
 				}
 			}
 		});
@@ -342,7 +340,6 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 			public void actionPerformed(ActionEvent e) {
 				// Rilancio a finestra di conferma.. poi richiamare finestra per inserimento ID.
 				searchWithIdDialog.initialize("Inserendo un ID di un ordine, leggibile dallo scontrino stampato, è possibile recuperare modificare un'ordine già finalizzato.");
-				searchWithIdDialog.setOKButton();
 			}
 		});
 //		generalButtonPanel.add(btnSearchButton);
@@ -352,7 +349,6 @@ public class SwingView extends AbstractView implements ReturnSwingView {
 			public void actionPerformed(ActionEvent e) {
 				
 				exitDialog.initialize("Vuoi davvero uscire?");
-				exitDialog.setOKButton();
 			}
 		});
 		

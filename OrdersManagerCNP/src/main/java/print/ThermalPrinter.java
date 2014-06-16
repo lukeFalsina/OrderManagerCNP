@@ -23,37 +23,37 @@ public class ThermalPrinter extends PrinterElement {
 			escp.advanceVertical(1);
 			for(Transaction checkedTransaction : incomingCommittedOrder.getAssociatedOrder().getTransactions()) {
 				if(checkedTransaction.getClass().equals(Transaction.class)){
-					escp.print(String.format(" %2d %-36s %6.2f ", checkedTransaction.getQuantity(),
+					escp.print(String.format(" %2d %-30s %6.2f ", checkedTransaction.getQuantity(),
 							checkedTransaction.getInvolvedElement().getName(), checkedTransaction.getTransactionCost()));
 					escp.advanceVertical(1);
 				}
 					
 				if(checkedTransaction.getClass().equals(TransactionWithSupplement.class)) {
 					TransactionWithSupplement transaction = (TransactionWithSupplement) checkedTransaction;
-					escp.print(String.format(" %2d %-36s        ",checkedTransaction.getQuantity(),
+					escp.print(String.format(" %2d %-30s        ",checkedTransaction.getQuantity(),
 							 checkedTransaction.getInvolvedElement().getName()));
 					escp.advanceVertical(1);
-					escp.print(String.format("    %-36s %6.2f ",transaction.getSupplement().getName(), 
+					escp.print(String.format("    %-30s %6.2f ",transaction.getSupplement().getName(), 
 							checkedTransaction.getTransactionCost()));
 					escp.advanceVertical(1);
 				}
 			}
-			escp.print(String.format("    %-34s %8.2f ","TOTALE:",incomingCommittedOrder.getAssociatedOrder().getTotalCost()));
+			escp.print(String.format("%-32s %8.2f ","TOTALE:",incomingCommittedOrder.getAssociatedOrder().getTotalCost()));
 			escp.advanceVertical(1);
 			escp.advanceVertical(1);
-			escp.print("------------------------------------------------");
+			escp.print("------------------------------------------");
 			escp.advanceVertical(1);
-			escp.print("--              NUMERO   TAVOLO               --");
+			escp.print("--           NUMERO   TAVOLO            --");
 			escp.advanceVertical(1);
-			escp.print("------------------------------------------------");
+			escp.print("------------------------------------------");
 			escp.advanceVertical(1);
-			escp.print("--                                            --");
+			escp.print("--                                      --");
 			escp.advanceVertical(1);
-			escp.print("--                                            --");
+			escp.print("--                                      --");
 			escp.advanceVertical(1);
-			escp.print("--                                            --");
+			escp.print("--                                      --");
 			escp.advanceVertical(1);
-			escp.print("------------------------------------------------");
+			escp.print("------------------------------------------");
 			escp.cut();
 			escp.close(); //close stream
 			} else
