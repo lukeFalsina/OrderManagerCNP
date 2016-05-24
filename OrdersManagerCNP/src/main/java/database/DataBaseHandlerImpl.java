@@ -1,7 +1,5 @@
 package database;
 
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -77,14 +75,14 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 			//Genero un record con un marker e lo inserisco
 			randomGenerator = new Random();
 			randomMarker = randomGenerator.nextInt(2147483647);
-			pst = con.prepareStatement("INSERT INTO \"Ordine\"("+
-					"\"NumeroTavolo\", \"DataRicezione\", \"DataEvasione\", "+ 
-					"\"Marker\") VALUES (0, now(), NULL, ?);");
+			pst = con.prepareStatement("INSERT INTO Ordine("+
+					"NumeroTavolo, DataRicezione, DataEvasione, "+
+					"Marker) VALUES (0, now(), NULL, ?);");
 			pst.setInt(1, randomMarker);
 			
 			pst.executeUpdate();
 			//estraggo i campi del record compilati dal DB partendo dal marker
-			pst = con.prepareStatement("SELECT \"ID_ordine\", \"DataRicezione\" FROM \"Ordine\" WHERE \"Marker\" = ?;");
+			pst = con.prepareStatement("SELECT ID_ordine, DataRicezione FROM Ordine WHERE Marker = ?;");
 			pst.setInt(1, randomMarker);
 			rs = pst.executeQuery();
 			if (rs.next()) {
@@ -92,8 +90,8 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 				time=rs.getTimestamp(2).toString();
 		    } else return null;
 			//Azzero il marker
-			pst = con.prepareStatement("UPDATE \"Ordine\""+
-			   " SET \"Marker\" = 0 WHERE \"ID_ordine\" = ? ;");
+			pst = con.prepareStatement("UPDATE Ordine"+
+			   " SET Marker = 0 WHERE ID_ordine = ? ;");
 			pst.setInt(1, id_ordine);
 			
 			pst.executeUpdate();
@@ -115,16 +113,16 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 						//Genero un record con un marker e lo inserisco
 						randomGenerator = new Random();
 						randomMarker = randomGenerator.nextInt(2147483647);
-						pst = con.prepareStatement("INSERT INTO \"Variazione\"( "+
-					            "\"Descrizione\", \"Supplemento\", \"Marker\") "+
+						pst = con.prepareStatement("INSERT INTO Variazione( "+
+					            "Descrizione, Supplemento, Marker) "+
 					            "VALUES (?, ?, ?);");
 						pst.setString(1, tSupp.getSupplement().getName());
 						pst.setFloat(2, tSupp.getSupplement().getExtraCharge());
 						pst.setInt(3, randomMarker);
 						pst.executeUpdate();
 						//estraggo i campi del record compilati dal DB partendo dal marker
-						pst = con.prepareStatement("SELECT \"ID_variazione\" FROM \"Variazione\""+
-								" WHERE \"Marker\" = ?;");
+						pst = con.prepareStatement("SELECT ID_variazione FROM Variazione"+
+								" WHERE Marker = ?;");
 						pst.setInt(1, randomMarker);
 						rs = pst.executeQuery();
 						if (rs.next()) {
@@ -138,8 +136,8 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 					    } else return null;
 						
 						//Azzero il marker
-						pst = con.prepareStatement("UPDATE \"Variazione\" "+
-						   " SET \"Marker\" = 0 WHERE \"ID_variazione\" = ? ;");
+						pst = con.prepareStatement("UPDATE Variazione "+
+						   " SET Marker = 0 WHERE ID_variazione = ? ;");
 						pst.setInt(1, id_ordine);
 						pst.executeUpdate();
 					}else 
@@ -151,8 +149,8 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 				
 				//Ho ID_ordine, ID_pietanza e ID_variazione(se presente)
 				//Quindi posso inserire la transazione nel DB
-				pst = con.prepareStatement("INSERT INTO \"Transazione\"( "+
-			            "\"Quantita\", \"ordine_ID\", \"pietanza_ID\", \"variazione_ID\") "+
+				pst = con.prepareStatement("INSERT INTO Transazione( "+
+			            "Quantita, ordine_ID, pietanza_ID, variazione_ID) "+
 			            "VALUES (?, ?, ?, "+(id_variazione!=0 ? "?" : "NULL")+");");
 				pst.setInt(1, t.getQuantity());
 				pst.setInt(2, id_ordine);
@@ -241,7 +239,7 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 			
 			//
 			//ORDINE
-			pst = con.prepareStatement("SELECT \"DataRicezione\" FROM \"Ordine\" WHERE \"ID_ordine\" = ?;");
+			pst = con.prepareStatement("SELECT DataRicezione FROM Ordine WHERE ID_ordine = ?;");
 			pst.setInt(1, (int)ID);
 			rs0 = pst.executeQuery();
 			if (rs0.next()) {
@@ -251,8 +249,8 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 			//
 			//TRANSAZIONE
 			pst = con.prepareStatement(
-					"SELECT \"Quantita\", \"ID_transazione\", \"DataCommit\", \"variazione_ID\", \"pietanza_ID\", "+ 
-				       "FROM \"Transazione\" WHERE \"ordine_ID\" = ?;");
+					"SELECT Quantita, ID_transazione, DataCommit, variazione_ID, pietanza_ID "+
+				       "FROM Transazione WHERE ordine_ID = ?;");
 			pst.setInt(1, (int)ID);
 			rs1 = pst.executeQuery();
 			
@@ -268,8 +266,8 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 		    
 				//
 				//PIETANZA
-				pst = con.prepareStatement("SELECT \"Nome\", \"Costo\", \"Descrizione\", \"tipo_ID\" "+
-						  "FROM \"Pietanza\" WHERE \"ID_pietanza\" = ?;");
+				pst = con.prepareStatement("SELECT Nome, Costo, Descrizione, tipo_ID "+
+						  "FROM Pietanza WHERE ID_pietanza = ?;");
 				pst.setInt(1, transazione_pietanza_ID);
 				rs = pst.executeQuery();
 				if (rs.next()) {
@@ -290,8 +288,8 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 				else {
 					//
 					//VARIAZIONE
-					pst = con.prepareStatement("SELECT \"Descrizione\", \"Supplemento\" "+
-							  "FROM \"Variazione\" WHERE \"ID_variazione\" = ?;");
+					pst = con.prepareStatement("SELECT Descrizione, Supplemento "+
+							  "FROM Variazione WHERE ID_variazione = ?;");
 					pst.setInt(1, transazione_variazione_ID);
 					rs = pst.executeQuery();
 					if (rs.next()) {
@@ -351,14 +349,14 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 			startTransaction();
 			
 			//pst = con.prepareStatement("SELECT \"Nome\",\"Costo\",\"Descrizione\",\"ID_pietanza\" FROM public.\"Pietanza\" WHERE \"tipo_ID\" = ?;");
-			pst = con.prepareStatement("SELECT \"Nome\",\"Costo\",\"Descrizione\",\"ID_pietanza\" FROM public.\"Pietanza\" WHERE \"tipo_ID\" = ? AND \"active\"='t';");
-			if (elementChoice=="FOOD"){
+			pst = con.prepareStatement("SELECT Nome, Costo, Descrizione, ID_pietanza FROM pietanza WHERE tipo_ID = ? AND active='t';");
+			if (elementChoice.equals("FOOD")){
 				pst.setInt(1, 1);
 				rs = pst.executeQuery();
 		        while (rs.next()) {
-		        	appoggio.add(new Food(rs.getString(3),rs.getFloat(2),rs.getString(1),rs.getLong(4)));
+		        	appoggio.add(new Food(rs.getString(1),rs.getFloat(2),rs.getString(3),rs.getLong(4)));
 		        }
-			}else if (elementChoice=="DRINK"){
+			} else if (elementChoice.equals("DRINK")){
 				pst.setInt(1, 2);
 				rs = pst.executeQuery();
 		        while (rs.next()) {
@@ -403,7 +401,7 @@ public class DataBaseHandlerImpl implements DataBaseHandler {
 		try {
 			startTransaction();
 			
-			pst = con.prepareStatement("SELECT \"Descrizione\",\"Supplemento\",\"ID_variazione\" FROM public.\"Variazione\";");
+			pst = con.prepareStatement("SELECT Descrizione, Supplemento, ID_variazione FROM variazione;");
 	        rs = pst.executeQuery();
 	        while (rs.next()) {
 	        	appoggio.add(new Supplement(rs.getString(1),rs.getFloat(2),rs.getLong(3)));
